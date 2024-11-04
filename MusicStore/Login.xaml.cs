@@ -43,14 +43,16 @@ namespace MusicStore
                     AdminScreen ad = new AdminScreen();
                     ad.Show();
                     this.Hide();
-
                     return;
 
 
                 }
-                this.Hide();
+                else
+                {
+                    LoginSuccessful?.Invoke();
 
-                LoginSuccessful?.Invoke();
+                }
+
 
 
 
