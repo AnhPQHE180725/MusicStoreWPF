@@ -37,15 +37,21 @@ namespace MusicStore
             else 
             {
 
-                LoginSuccessful?.Invoke(); 
 
                 if (u.RoleId == 1)
                 {
                     AdminScreen ad = new AdminScreen();
                     ad.Show();
+                    this.Hide();
+
+                    return;
+
 
                 }
                 this.Hide();
+
+                LoginSuccessful?.Invoke();
+
 
 
             }
