@@ -126,7 +126,10 @@ namespace MusicStore
             loginWindow.LoginSuccessful += OnLoginSuccessful; // Đăng ký sự kiện khi đăng nhập thành công.
             this.Hide(); // Ẩn cửa sổ hiện tại.
             loginWindow.ShowDialog(); // Hiển thị cửa sổ đăng nhập như một hộp thoại.
-            this.Show(); // Hiện lại cửa sổ hiện tại sau khi cửa sổ đăng nhập đóng.
+            if (!loginWindow.IsLoginAdmin)
+            {
+                this.Show(); // Hiện lại cửa sổ hiện tại nếu không đăng nhập thành công.
+            }
         }
 
         private void OnLoginSuccessful()

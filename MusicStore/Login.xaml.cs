@@ -22,6 +22,8 @@ namespace MusicStore
     public partial class Login : Window
     {
         public event Action LoginSuccessful;
+
+        public bool IsLoginAdmin { get; private set; }
         public Login()
         {
             InitializeComponent();
@@ -41,15 +43,18 @@ namespace MusicStore
                 if (u.RoleId == 1)
                 {
                     AdminScreen ad = new AdminScreen();
-                    ad.Show();
-                    this.Hide();
-                    return;
+                    
+                    ad.Show(); // Hiện AdminScreen
+                    IsLoginAdmin = true; // Đặt trạng thái đăng nhập thành công
+                    this.Close();
 
 
                 }
                 else
                 {
-                    LoginSuccessful?.Invoke();
+                    LoginSuccessful?.Invoke(); // Gọi sự kiện nếu không phải Admin
+                    IsLoginAdmin = false; // Đặt trạng thái không thành công
+                    this.Close(); // Đóng cửa sổ đăng nhập
 
                 }
 
