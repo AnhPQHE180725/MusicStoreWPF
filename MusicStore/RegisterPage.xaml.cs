@@ -21,7 +21,7 @@ namespace MusicStore
     {
         public RegisterPage()
         {
-            InitializeComponent();
+            ///InitializeComponent();
         }
     }
 }

@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicStore"
-        mc:Ignorable="d"
-        Title="RegisterPage" Height="450" Width="800">
+        mc:Ignorable="d" Height="650" Width="1000" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+       
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            
+        <!--Left Section-->
+        <Border Background="#ffd500" Padding="30" CornerRadius="25 0 0 25">
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="/Img/userpng.png" Width="160" Height="160" Margin="0 0 0 40"/>
+
+                <TextBlock Text="Let's get your sign up" TextAlignment="Center" FontWeight="SemiBold" FontSize="28" Foreground="#363636" />
+                <TextBlock TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Foreground="#363636" Margin="0 20 0 20" Text="It should only teake a couple a minutes to pair with your watch"/>
+
+
+                <Button>
+                   
+                </Button>
+            </StackPanel>
+        </Border>
+            
+        <!--Right Section-->
     </Grid>
 </Window>
