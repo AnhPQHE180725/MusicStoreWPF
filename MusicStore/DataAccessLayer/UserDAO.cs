@@ -34,5 +34,29 @@ namespace MusicStore.DataAccessLayer
 
         }
 
+        public static bool AddUser(User user)
+        {
+            using (var context = new MusicStoreContext())
+            {
+                // Kiểm tra xem tên người dùng đã tồn tại chưa
+                if (context.Users.Any(u => u.Username == user.Username))
+                {
+                    return false; // Trả về false nếu tên người dùng đã tồn tại
+                }
+
+                try
+                {
+                    context.Users.Add(user);
+                    context.SaveChanges(); // Lưu người dùng mới vào cơ sở dữ liệu
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    // Ghi log hoặc xử lý lỗi nếu cần
+                    throw new Exception("Could not save user to database: " + ex.InnerException?.Message);
+                }
+            }
+        }
+
     }
 }

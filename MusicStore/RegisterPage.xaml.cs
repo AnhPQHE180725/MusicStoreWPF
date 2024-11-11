@@ -1,27 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using MusicStore.DataAccessLayer;
+using MusicStore.Models;
 
 namespace MusicStore
 {
-    /// <summary>
-    /// Interaction logic for RegisterPage.xaml
-    /// </summary>
     public partial class RegisterPage : Window
     {
         public RegisterPage()
         {
-            ///InitializeComponent();
+            InitializeComponent();
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                    string.IsNullOrWhiteSpace(txtUsername.Text) ||
+                    string.IsNullOrWhiteSpace(txtPassword.Password))
+                {
+                    errorMessage.Text = "Please fill in all fields.";
+                    return;
+                }
+
+                var newUser = new User
+                {
+                    Email = txtEmail.Text,
+                    Username = txtUsername.Text,
+                    Password = txtPassword.Password,
+                    RoleId = 2 // Thiết lập RoleId cho người dùng mới
+                };
+
+                bool isSuccess = UserDAO.AddUser(newUser);
+                if (isSuccess)
+                {
+                    MessageBox.Show("Registration successful!");
+                    this.Close();
+                }
+                else
+                {
+                    errorMessage.Text = "Registration failed. Username may already exist.";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

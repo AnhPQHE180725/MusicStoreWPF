@@ -63,6 +63,16 @@ namespace MusicStore
 
             }
         }
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Mở cửa sổ đăng ký
+            RegisterPage registerPage = new RegisterPage();
+            registerPage.Show();
+            
+        }
+
+
+
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
