@@ -1,0 +1,33 @@
+﻿<Window x:Class="MusicStore.ManageUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicStore"
+        mc:Ignorable="d"
+        Title="ManageUser" Height="450" Width="800">
+    <Grid>
+        <!-- DataGrid to display users -->
+        <DataGrid Name="UsersDataGrid" Margin="10,10,322,50" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="UserId" Binding="{Binding UserId}" Width="0.75*"/>
+                <DataGridTextColumn Header="Role" Binding="{Binding Role.Name}" Width="*"/>
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"/>
+                <DataGridTextColumn Header="Password" Binding="{Binding Password}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.5*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Add User Button -->
+        <Button Name="AddUserButton" Content="Add Admin" Width="100" Height="30" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="515,0,0,64" 
+                Click="AddAdminButton_Click" />
+        <Button Content="Delete Admin" HorizontalAlignment="Left" Height="30" Margin="637,340,0,0" VerticalAlignment="Top" Width="105" Click="DeleteAdmin_Click"/>
+
+        <Button Content="Back" HorizontalAlignment="Left" Height="34" Margin="35,392,0,0" VerticalAlignment="Top" Width="118" Click="Back_Click"/>
+        
+        <Label Content="Username" HorizontalAlignment="Left" Height="24" Margin="500,79,0,0" VerticalAlignment="Top" Width="227"/>
+        <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Height="28" Margin="572,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+    </Grid>
+</Window>
