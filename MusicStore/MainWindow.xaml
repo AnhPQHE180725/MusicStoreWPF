@@ -100,6 +100,8 @@
         </StackPanel>
         <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Height="37" Margin="33,0,0,0" VerticalAlignment="Center" Width="84" Background="LightGreen" Click="LoginButton_Click" />
         <Button x:Name="Logout" Content="Logout" HorizontalAlignment="Left" Height="37" Margin="122,0,0,0" VerticalAlignment="Center" Width="107" Click="Logout_Click" />
+        <Button x:Name="Viewmyorder" Content="View my order" HorizontalAlignment="Left" Height="37" Margin="240,0,0,0" VerticalAlignment="Center" Width="107" Click="Viewmyorder_Click" />
+
 
     </Grid>
 </Window>

@@ -37,11 +37,14 @@ namespace MusicStore
             {
                 LoginButton.Visibility = Visibility.Hidden;
                 Logout.Visibility = Visibility.Visible;
+                Viewmyorder.Visibility = Visibility.Visible;
             }
             else
             {
                 LoginButton.Visibility = Visibility.Visible;
                 Logout.Visibility = Visibility.Hidden;
+                Viewmyorder.Visibility = Visibility.Hidden;
+
             }
         }
         private void Main_Loaded(object sender, RoutedEventArgs e)
@@ -278,5 +281,11 @@ namespace MusicStore
             this.Close();  // Đóng cửa sổ hiện tại
         }
 
+        private void Viewmyorder_Click(object sender, RoutedEventArgs e)
+        {
+            ViewUserOrder viewUserOrder = new ViewUserOrder();
+            viewUserOrder.Show();
+            this.Close();
+        }
     }
 }
