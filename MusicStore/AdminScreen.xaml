@@ -19,7 +19,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Background="Gainsboro"  Grid.Row="0" Grid.ColumnSpan="2">
             <StackPanel Background="#FF83FA78" HorizontalAlignment="Left" Width="551">
                 <TextBlock Text="Album List" FontSize="20" Foreground="#FF342BE2" FontWeight="DemiBold" Width="97"/>
                 <StackPanel Orientation="Horizontal" Margin="0 50">
@@ -27,7 +27,7 @@
                     <TextBox Name="txtAlbumId" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
 
                     <Label Content="Price:" />
-                    <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                    <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap"  Width="50"/>
 
                     <Label Content="AlbumUrl:"/>
                     <TextBox x:Name="txtAlbumUrl" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="221"/>
@@ -54,10 +54,29 @@
             </StackPanel>
 
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="1">
-            <StackPanel Background="#FF930000"></StackPanel>
-            <TextBlock Text="Artist List" FontSize="20" Foreground="Orange" FontWeight="DemiBold" Margin="127,0,126,257"  />
+        <Grid Grid.Row="0" Grid.Column="1" Margin="0,186,0,0">
+            <StackPanel Background="#FF00FFED" Margin="-5,0,0,0"></StackPanel>
+            <StackPanel Orientation="Vertical" >
+                <TextBlock Text="Artist List" FontSize="20" Foreground="Orange" FontWeight="DemiBold" TextAlignment="Center" />
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Artist Name:"/>
+                    <TextBox x:Name="ArtistName" Width="135"></TextBox>
+                    <Button Content="Refesh" Width="49"/>
+                    <Button Content="Add" Width="50"/>
+                    <Button Content="Edit" Width="36"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Artist ID" Width="50"/>
+                        <GridViewColumn Header="Artist Name" Width="300"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>        
         <Grid Grid.Row="1"  Grid.Column="0">
             <ListView x:Name="listAlbum" SelectionChanged="listAlbum_SelectionChanged" Grid.ColumnSpan="2">
                 <ListView.View>
