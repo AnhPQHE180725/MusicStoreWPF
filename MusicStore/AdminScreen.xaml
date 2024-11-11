@@ -52,31 +52,38 @@
                 </StackPanel>
 
             </StackPanel>
+            <Button Content="Logout" HorizontalAlignment="Left" Height="36" Margin="683,21,0,0" VerticalAlignment="Top" Width="86" Click="Logout_Click"/>
+            <Button Content="Manage User" HorizontalAlignment="Left" Height="42" Margin="683,72,0,0" VerticalAlignment="Top" Width="86" Click="ManageUser_Click"/>
+            <Button Content="Manage Order" HorizontalAlignment="Left" Height="40" Margin="684,130,0,0" VerticalAlignment="Top" Width="85" Click="ManageOrder_Click"/>
 
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Margin="0,186,0,0">
-            <StackPanel Background="#FF00FFED" Margin="-5,0,0,0"></StackPanel>
+            <StackPanel Background="#FF00FFED"/>
             <StackPanel Orientation="Vertical" >
                 <TextBlock Text="Artist List" FontSize="20" Foreground="Orange" FontWeight="DemiBold" TextAlignment="Center" />
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Artist Name:"/>
-                    <TextBox x:Name="ArtistName" Width="135"></TextBox>
-                    <Button Content="Refesh" Width="49"/>
-                    <Button Content="Add" Width="50"/>
-                    <Button Content="Edit" Width="36"/>
+                    <TextBox x:Name="txtArtistName" Width="135" TextChanged="txtArtistName_TextChanged"></TextBox>
+                    <Button Content="Refesh" Width="49" Click="RefeshArtistbtn_Click"/>
+                    <Button Content="Add" Width="50" Click="AddArtistbtn_Click"/>
+                    <Button Content="Edit" Width="36" Click="EditButtonbtn_Click"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
-            <ListView>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="63*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listArtist" Grid.RowSpan="2" SelectionChanged="listArtist_SelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Artist ID" Width="50"/>
-                        <GridViewColumn Header="Artist Name" Width="300"/>
+                        <GridViewColumn Header="Artist ID" Width="50" DisplayMemberBinding="{Binding ArtistId}"/>
+                        <GridViewColumn Header="Artist Name" Width="300" DisplayMemberBinding="{Binding Name}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-        </Grid>        
+        </Grid>
         <Grid Grid.Row="1"  Grid.Column="0">
             <ListView x:Name="listAlbum" SelectionChanged="listAlbum_SelectionChanged" Grid.ColumnSpan="2">
                 <ListView.View>

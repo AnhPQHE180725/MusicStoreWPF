@@ -34,6 +34,7 @@ namespace MusicStore
             getlistAlbum();
             getlistGenre();
             getlistArtist();
+            getAllArtist();
         }
         private void getlistAlbum()
         {
@@ -75,6 +76,13 @@ namespace MusicStore
             getlistAlbum();
             ClearFields();
 
+        }
+        private void listArtist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listArtist.SelectedItem is Artist artist)
+            {
+                txtArtistName.Text = artist.Name;
+            }
         }
 
         private void listAlbum_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -189,9 +197,9 @@ namespace MusicStore
                         albumToUpdate.Price = price;
 
                     }
-                    albumToUpdate.AlbumUrl= txtAlbumUrl.Text;
+                    albumToUpdate.AlbumUrl = txtAlbumUrl.Text;
                     albumToUpdate.Artist = (Artist)cboArtist.SelectedValue;
-                    albumToUpdate.Genre = (Genre)cboGenre.SelectedValue ;
+                    albumToUpdate.Genre = (Genre)cboGenre.SelectedValue;
                     _context.SaveChanges();
 
                     getlistAlbum();
@@ -210,6 +218,14 @@ namespace MusicStore
             cboGenre.SelectedIndex = -1;
         }
 
+        private void getAllArtist()
+        {
+            var artists = _context.Artists.ToList();
+            listArtist.ItemsSource = artists;
+            listArtist.DisplayMemberPath = "Name";
+            listArtist.SelectedValue = "ArtistId";
+        }
+
         private void cboArtistFind_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -226,12 +242,64 @@ namespace MusicStore
 
         }
 
+
         private void AddArtistbtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtArtistName.Text))
+            {
+                int newArtistId = _context.Artists.Any() ? _context.Artists.Max(a => a.ArtistId) + 1 : 1;
+                var newArtist = new Artist
+                {
+                    ArtistId = newArtistId,
+                    Name = txtArtistName.Text
+                };
+                _context.Artists.Add(newArtist);
+                _context.SaveChanges();
+                getAllArtist();
+                getlistArtist();
+            }
+        }
+
+        private void EditButtonbtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtArtistName.Text))
+            {
+                if (listArtist.SelectedItem is Artist selectedArtist)
+                {
+                    var artistToUpdate = _context.Artists.FirstOrDefault(a => a.ArtistId == selectedArtist.ArtistId);
+                    if (artistToUpdate != null)
+                    {
+                        artistToUpdate.Name = txtArtistName.Text;
+                        _context.SaveChanges();
+                        getAllArtist();
+                        getlistArtist();
+                        txtArtistName.Clear();
+                    }
+                }
+            }
+        }
+
+
+
+        private void txtArtistName_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void EditButtonbtn_Click(object sender, RoutedEventArgs e)
+
+        private void ManageOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
+        }
+
+        private void ManageUser_Click(object sender, RoutedEventArgs e)
         {
 
         }
