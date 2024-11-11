@@ -296,6 +296,7 @@ namespace MusicStore
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
+            UserDAO.LogoutUser();
             MainWindow mw = new MainWindow();
             mw.Show();
             this.Close();

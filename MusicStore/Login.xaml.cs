@@ -21,7 +21,6 @@ namespace MusicStore
     /// </summary>
     public partial class Login : Window
     {
-        public event Action LoginSuccessful;
 
         public bool IsLoginAdmin { get; private set; }
         public Login()
@@ -52,7 +51,8 @@ namespace MusicStore
                 }
                 else
                 {
-                    LoginSuccessful?.Invoke(); // Gọi sự kiện nếu không phải Admin
+                    MainWindow mw = new MainWindow();
+                    mw.Show();
                     IsLoginAdmin = false; // Đặt trạng thái không thành công
                     this.Close(); 
 

@@ -20,6 +20,7 @@ namespace MusicStore
     public partial class MainWindow : Window
     {
         private readonly MusicStoreContext _context;
+        private readonly User checkLogin = UserDAO.GetLoggedInUser();
 
 
 
@@ -27,13 +28,29 @@ namespace MusicStore
         {
             InitializeComponent();
             _context = new MusicStoreContext();
+            UpdateLoginVisibility();
 
+        }
+        private void UpdateLoginVisibility()
+        {
+            if (checkLogin != null)
+            {
+                LoginButton.Visibility = Visibility.Hidden;
+                Logout.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LoginButton.Visibility = Visibility.Visible;
+                Logout.Visibility = Visibility.Hidden;
+            }
         }
         private void Main_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAlbums();
             loadGenreFind();
             loadArtistFind();
+
+ 
         }
         private void LoadAlbums()
         {
@@ -120,22 +137,14 @@ namespace MusicStore
             SongListBox.ItemsSource = songs;
         }
 
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            Login loginWindow = new Login(); // Tạo một đối tượng cửa sổ đăng nhập mới.
-            loginWindow.LoginSuccessful += OnLoginSuccessful; // Đăng ký sự kiện khi đăng nhập thành công.
-            this.Hide(); // Ẩn cửa sổ hiện tại.
-            loginWindow.ShowDialog(); // Hiển thị cửa sổ đăng nhập như một hộp thoại.
-            if (!loginWindow.IsLoginAdmin)
-            {
-                this.Show(); // Hiện lại cửa sổ hiện tại nếu không đăng nhập thành công.
-            }
-        }
 
-        private void OnLoginSuccessful()
-        {
-            LoginButton.Visibility = Visibility.Hidden;
-            Logout.Visibility = Visibility.Visible;
+            Login lo = new Login();
+                lo.Show();
+                this.Close();
+            
         }
 
 
@@ -195,16 +204,11 @@ namespace MusicStore
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            LoginButton.Visibility = Visibility.Visible;
-            Logout.Visibility = Visibility.Hidden;
-            Login loginWindow = new Login(); // Tạo một đối tượng cửa sổ đăng nhập mới.
-            loginWindow.LoginSuccessful += OnLoginSuccessful; // Đăng ký sự kiện khi đăng nhập thành công.
-            this.Hide(); // Ẩn cửa sổ hiện tại.
-            loginWindow.ShowDialog(); // Hiển thị cửa sổ đăng nhập như một hộp thoại.
-            if (!loginWindow.IsLoginAdmin)
-            {
-                this.Show(); // Hiện lại cửa sổ hiện tại nếu không đăng nhập thành công.
-            }
+
+            UserDAO.LogoutUser();
+            Login lo = new Login();
+            lo.Show();
+            this.Close();
 
 
         }

@@ -98,8 +98,8 @@
             <Button Content="Check Out" Width="120" Margin="10" Padding="10,5" Background="Orange" Foreground="White"
                BorderThickness="0" FontWeight="Bold" Cursor="Hand" Click="CheckoutButton_Click" />
         </StackPanel>
-        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Height="37" Margin="33,0,0,0" VerticalAlignment="Center" Width="84" Background="LightGreen" Click="LoginButton_Click"/>
-        <Button x:Name="Logout" Content="Logout" HorizontalAlignment="Left" Height="37" Margin="122,0,0,0" VerticalAlignment="Center" Width="107" Click="Logout_Click" Visibility="Hidden"/>
+        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Height="37" Margin="33,0,0,0" VerticalAlignment="Center" Width="84" Background="LightGreen" Click="LoginButton_Click" />
+        <Button x:Name="Logout" Content="Logout" HorizontalAlignment="Left" Height="37" Margin="122,0,0,0" VerticalAlignment="Center" Width="107" Click="Logout_Click" />
 
     </Grid>
 </Window>
