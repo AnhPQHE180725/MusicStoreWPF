@@ -54,7 +54,7 @@ namespace MusicStore
                 {
                     LoginSuccessful?.Invoke(); // Gọi sự kiện nếu không phải Admin
                     IsLoginAdmin = false; // Đặt trạng thái không thành công
-                    this.Close(); // Đóng cửa sổ đăng nhập
+                    this.Close(); 
 
                 }
 

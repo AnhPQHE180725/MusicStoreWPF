@@ -135,6 +135,7 @@ namespace MusicStore
         private void OnLoginSuccessful()
         {
             LoginButton.Visibility = Visibility.Hidden;
+            Logout.Visibility = Visibility.Visible;
         }
 
 
@@ -192,6 +193,86 @@ namespace MusicStore
 
         }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            LoginButton.Visibility = Visibility.Visible;
+            Logout.Visibility = Visibility.Hidden;
+            Login loginWindow = new Login(); // Tạo một đối tượng cửa sổ đăng nhập mới.
+            loginWindow.LoginSuccessful += OnLoginSuccessful; // Đăng ký sự kiện khi đăng nhập thành công.
+            this.Hide(); // Ẩn cửa sổ hiện tại.
+            loginWindow.ShowDialog(); // Hiển thị cửa sổ đăng nhập như một hộp thoại.
+            if (!loginWindow.IsLoginAdmin)
+            {
+                this.Show(); // Hiện lại cửa sổ hiện tại nếu không đăng nhập thành công.
+            }
+
+
+        }
+
+        private void CheckoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CartListBox.Items.Count == 0)
+            {
+                MessageBox.Show("Your cart is empty. Please add items to the cart before proceeding.");
+                return; 
+            }
+            var loggedInUser = UserDAO.GetLoggedInUser();
+            if (loggedInUser == null)
+            {
+                MessageBox.Show("Please login to proceed.");
+                LoginButton_Click(sender, e);  // Mở cửa sổ đăng nhập
+                return;
+            }
+            int newOrderId = _context.Orders.Any() ? _context.Orders.Max(a => a.OrderId) + 1 : 1;
+
+            var order = new Order
+            {
+                OrderId = newOrderId,
+                UserId = loggedInUser.UserId,  // Lưu lại UserId của người dùng
+                OrderDate = DateOnly.FromDateTime(DateTime.Now),
+                Total = 0  // Khởi tạo tổng giá trị đơn hàng
+            };
+            decimal totalPrice = 0;
+
+            foreach (var item in CartListBox.Items)
+            {
+                int newOrderDetailId = _context.OrderDetails.Any() ? _context.OrderDetails.Max(a => a.OrderDetailId) + 1 : 1;
+
+                if (item is OrderDetail orderDetail)
+                {
+                    var orderItem = new OrderDetail
+                    {
+                        OrderDetailId = newOrderDetailId,
+                        OrderId = order.OrderId,
+                        AlbumId = orderDetail.AlbumId,
+                        Quantity = orderDetail.Quantity,
+                        UnitPrice = orderDetail.UnitPrice
+                    };
+
+                    // Thêm chi tiết đơn hàng vào cơ sở dữ liệu
+                    _context.OrderDetails.Add(orderItem);
+
+                    // Cộng tổng giá trị đơn hàng
+                    totalPrice += orderDetail.UnitPrice * orderDetail.Quantity;
+                }
+            }
+
+            // Cập nhật tổng giá trị của đơn hàng
+            order.Total = totalPrice;
+
+            // Thêm đơn hàng vào cơ sở dữ liệu
+            _context.Orders.Add(order);
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            _context.SaveChanges();
+
+            // Chuyển sang màn hình xác nhận đơn hàng
+
+            OrderConfirmation orderConfirmationWindow = new OrderConfirmation(order.OrderId);
+            orderConfirmationWindow.Show();
+
+            this.Close();  // Đóng cửa sổ hiện tại
+        }
 
     }
 }

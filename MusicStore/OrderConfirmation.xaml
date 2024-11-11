@@ -1,0 +1,50 @@
+﻿<Window x:Class="MusicStore.OrderConfirmation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicStore"
+        mc:Ignorable="d"
+        Title="OrderConfirmation" Height="450" Width="800">
+    <Grid Background="#f9f9f9">
+        <!-- Main Content Section with ScrollViewer for Responsiveness -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+                <Label Content="Order Confirmation" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
+                <Label Content="First Name:"/>
+                <TextBox x:Name="FirstNameTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+                <Label Content="Last Name:"/>
+                <TextBox x:Name="LastNameTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+                <Label Content="Address:"/>
+                <TextBox x:Name="AddressTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+                <Label Content="City:"/>
+                <TextBox x:Name="CityTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+                <Label Content="State:"/>
+                <TextBox x:Name="StateTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+                <Label Content="Country"/>
+                <TextBox x:Name="CountryTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+                <Label Content="Phone"/>
+                <TextBox x:Name="PhoneTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+                <Label Content="Email:"/>
+                <TextBox x:Name="EmailTextBox" Width="300" Margin="0,5" Padding="10" FontSize="14" 
+                          Background="#ffffff" BorderBrush="#ccc" BorderThickness="1" />
+
+                <!-- Total Display -->
+                <TextBlock Text="Total: $0.00" x:Name="TotalTextBlock" FontSize="16" HorizontalAlignment="Center" 
+                           Margin="10,10,10,10" Foreground="#4caf50" />
+
+                <!-- Submit Button -->
+                <Button Content="Submit Order" HorizontalAlignment="Center" Width="200" Height="40" Margin="0,20" 
+                        FontSize="16" Background="#4caf50" Foreground="White" BorderBrush="#388e3c" BorderThickness="1" 
+                         Click="SubmitOrderButton_Click" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

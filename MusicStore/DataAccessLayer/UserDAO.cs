@@ -10,10 +10,24 @@ namespace MusicStore.DataAccessLayer
 {
     public class UserDAO
     {
+        private static User _loggedInUser;
+
+        // Lấy người dùng đăng nhập
+        public static User GetLoggedInUser()
+        {
+            return _loggedInUser;  // Trả về đối tượng User của người dùng hiện tại
+        }
         public static User getUserbyUsernamePassword(string username, string password)
         {
-            var db = new MusicStoreContext();
-            return db.Users.FirstOrDefault(c=>c.Username.Equals(username)&& c.Password.Equals(password));   
+            using (var context = new MusicStoreContext())
+            {
+                var user = context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+                if (user != null)
+                {
+                    _loggedInUser = user; // Lưu thông tin người dùng đã đăng nhập vào biến tạm
+                }
+                return user;
+            }
 
         }
 
