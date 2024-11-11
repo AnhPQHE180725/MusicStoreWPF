@@ -220,5 +220,20 @@ namespace MusicStore
 
         }
 
+        private void RefeshArtistbtn_Click(object sender, RoutedEventArgs e)
+        {
+            txtArtistName.Clear();
+
+        }
+
+        private void AddArtistbtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditButtonbtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
