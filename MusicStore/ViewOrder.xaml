@@ -1,0 +1,46 @@
+﻿<Window x:Class="MusicStore.ViewOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicStore"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+
+        Title="ViewOrder" Height="450" Width="1000">
+    <Grid>
+        <!-- ListView for Orders -->
+        <ListView Name="ListOrder" Margin="0,0,367,90" SelectionMode="Single" SelectionChanged="ListOrderDataGrid_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="OrderId" DisplayMemberBinding="{Binding OrderId}" Width="Auto"/>
+                    <GridViewColumn Header="OrderDate" DisplayMemberBinding="{Binding OrderDate}" Width="Auto"/>
+                    <GridViewColumn Header="FirstName" DisplayMemberBinding="{Binding FirstName}" Width="Auto"/>
+                    <GridViewColumn Header="LastName" DisplayMemberBinding="{Binding LastName}" Width="Auto"/>
+                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="Auto"/>
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding City}" Width="Auto"/>
+                    <GridViewColumn Header="State" DisplayMemberBinding="{Binding State}" Width="Auto"/>
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Country}" Width="Auto"/>
+                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" Width="Auto"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="Auto"/>
+                    <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Total}" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- ListView for Order Details -->
+        <ListView Name="ListOrderDetail" Margin="638,0,0,165" SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="OrderDetailId" DisplayMemberBinding="{Binding OrderDetailId}" Width="Auto"/>
+                    <GridViewColumn Header="OrderId" DisplayMemberBinding="{Binding OrderId}" Width="Auto"/>
+                    <GridViewColumn Header="AlbumId" DisplayMemberBinding="{Binding AlbumId}" Width="Auto"/>
+                    <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}" Width="Auto"/>
+                    <GridViewColumn Header="UnitPrice" DisplayMemberBinding="{Binding UnitPrice}" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Back" HorizontalAlignment="Left" Height="50" Margin="731,352,0,0" VerticalAlignment="Top" Width="213" Click="Back_Click" />
+    </Grid>
+</Window>

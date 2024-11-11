@@ -52,9 +52,10 @@
                 </StackPanel>
 
             </StackPanel>
-            <Button Content="Logout" HorizontalAlignment="Left" Height="36" Margin="683,21,0,0" VerticalAlignment="Top" Width="86" Click="Logout_Click"/>
-            <Button Content="Manage User" HorizontalAlignment="Left" Height="42" Margin="683,72,0,0" VerticalAlignment="Top" Width="86" Click="ManageUser_Click"/>
-            <Button Content="Manage Order" HorizontalAlignment="Left" Height="40" Margin="684,130,0,0" VerticalAlignment="Top" Width="85" Click="ManageOrder_Click"/>
+            <Button Content="Logout" HorizontalAlignment="Left" Height="36" Margin="688,31,0,0" VerticalAlignment="Top" Width="86" Click="Logout_Click"/>
+            <Button Content="View User" HorizontalAlignment="Left" Height="42" Margin="616,72,0,0" VerticalAlignment="Top" Width="86" Click="ManageUser_Click"/>
+            <Button Content="View Order" HorizontalAlignment="Left" Height="40" Margin="766,72,0,0" VerticalAlignment="Top" Width="85" Click="ManageOrder_Click"/>
+            <Button Content="View Song" HorizontalAlignment="Left" Height="46" Margin="672,0,0,0" VerticalAlignment="Center" Width="118" Click="ManageSong_Click"/>
 
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Margin="0,186,0,0">

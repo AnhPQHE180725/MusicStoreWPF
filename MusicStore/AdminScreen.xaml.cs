@@ -289,7 +289,9 @@ namespace MusicStore
 
         private void ManageOrder_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewOrder vo = new ViewOrder();
+            vo.Show();
+            this.Close();
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
@@ -300,6 +302,13 @@ namespace MusicStore
         }
 
         private void ManageUser_Click(object sender, RoutedEventArgs e)
+        {
+            ManageUser mu = new ManageUser();
+            mu.Show();
+            this.Close();
+        }
+
+        private void ManageSong_Click(object sender, RoutedEventArgs e)
         {
 
         }

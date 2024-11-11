@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicStore"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="ManageUser" Height="450" Width="800">
     <Grid>
         <!-- DataGrid to display users -->
-        <DataGrid Name="UsersDataGrid" Margin="10,10,322,50" AutoGenerateColumns="False" 
-                  CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single">
+        <DataGrid Name="ListUsersDataGrid" Margin="10,10,322,50" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="ListUsersDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="UserId" Binding="{Binding UserId}" Width="0.75*"/>
-                <DataGridTextColumn Header="Role" Binding="{Binding Role.Name}" Width="*"/>
+                <DataGridTextColumn Header="Role" Binding="{Binding Role.RoleName}" Width="*"/>
                 <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"/>
                 <DataGridTextColumn Header="Password" Binding="{Binding Password}" Width="*"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.5*"/>
@@ -23,11 +24,18 @@
         <Button Name="AddUserButton" Content="Add Admin" Width="100" Height="30" 
                 VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="515,0,0,64" 
                 Click="AddAdminButton_Click" />
-        <Button Content="Delete Admin" HorizontalAlignment="Left" Height="30" Margin="637,340,0,0" VerticalAlignment="Top" Width="105" Click="DeleteAdmin_Click"/>
+        <Button Content="Delete Admin" HorizontalAlignment="Left" Height="30" Margin="657,340,0,0" VerticalAlignment="Top" Width="105" Click="DeleteAdmin_Click"/>
 
         <Button Content="Back" HorizontalAlignment="Left" Height="34" Margin="35,392,0,0" VerticalAlignment="Top" Width="118" Click="Back_Click"/>
-        
+
         <Label Content="Username" HorizontalAlignment="Left" Height="24" Margin="500,79,0,0" VerticalAlignment="Top" Width="227"/>
         <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Height="28" Margin="572,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+        <Label Content="Password" HorizontalAlignment="Left" Height="57" Margin="500,140,0,0" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="txtPassword"  HorizontalAlignment="Left" Height="29" Margin="565,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+        <Label Content="Email" HorizontalAlignment="Left" Height="51" Margin="500,202,0,0" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="txtEmail"  HorizontalAlignment="Left" Height="30" Margin="565,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="177"/>
+        <Button x:Name="Refesh_btn" Content="Refresh" HorizontalAlignment="Left" Height="26" Margin="572,383,0,0" VerticalAlignment="Top" Width="125" Click="Refresh_Click"/>
+
+
     </Grid>
 </Window>

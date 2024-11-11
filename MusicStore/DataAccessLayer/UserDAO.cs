@@ -1,4 +1,5 @@
-﻿using MusicStore.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace MusicStore.DataAccessLayer
             return db.Users.FirstOrDefault(c=>c.Username.Equals(username)&& c.Password.Equals(password));   
 
         }
+
     }
 }
