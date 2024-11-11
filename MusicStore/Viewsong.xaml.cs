@@ -36,18 +36,16 @@ namespace MusicStore
         {
             var albums = _context.Albums.ToList();
             AlbumComboBox.ItemsSource = albums;
-            AlbumComboBox.DisplayMemberPath = "Title";  // Show album titles
-            AlbumComboBox.SelectedValuePath = "AlbumId"; // Bind AlbumId
+            AlbumComboBox.DisplayMemberPath = "Title";  
+            AlbumComboBox.SelectedValuePath = "AlbumId"; 
         }
 
-        // Load all songs into DataGrid
         private void LoadSongs()
         {
             var songs = _context.Songs.Include(s => s.Album).ToList();
             SongsDataGrid.ItemsSource = songs;
         }
 
-        // Add a new song
         private void AddSong_Click(object sender, RoutedEventArgs e)
         {
             var title = TitleTextBox.Text;
@@ -79,8 +77,8 @@ namespace MusicStore
 
             _context.Songs.Add(song);
             _context.SaveChanges();
-            LoadSongs();  // Refresh the DataGrid
-            ClearFields(); // Clear the input fields
+            LoadSongs(); 
+            ClearFields();
         }
 
         // Update the selected song
@@ -95,8 +93,8 @@ namespace MusicStore
 
                 _context.Songs.Update(selectedSong);
                 _context.SaveChanges();
-                LoadSongs();  // Refresh the DataGrid
-                ClearFields(); // Clear the input fields
+                LoadSongs();  
+                ClearFields();
             }
             else
             {
@@ -113,7 +111,6 @@ namespace MusicStore
             AlbumComboBox.SelectedIndex = -1;
         }
 
-        // Populate fields when a song is selected from DataGrid
         private void SongsDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (SongsDataGrid.SelectedItem is Song selectedSong)
@@ -124,35 +121,20 @@ namespace MusicStore
                 AlbumComboBox.SelectedValue = selectedSong.AlbumId;
             }
         }
-        // Refresh the DataGrid and the form fields
+     
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            LoadSongs();  // Reload songs into DataGrid
-            ClearFields(); // Clear the input fields
+            LoadSongs();  
+            ClearFields(); 
         }
 
-        // Go back to the previous screen (or close the window)
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();  // Close the current window or navigate back to the previous screen
+            AdminScreen ad = new AdminScreen();
+            ad.Show();
+            this.Close();  
         }
     }
 }
-public class TimeOnlyToStringConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        if (value is TimeOnly time)
-        {
-            // Convert TimeOnly to the desired format (hh:mm:ss)
-            return time.ToString("hh\\:mm\\:ss");
-        }
-        return string.Empty; // Return empty if not a valid TimeOnly
-    }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return null; // Not needed for this scenario
-    }
-}
 

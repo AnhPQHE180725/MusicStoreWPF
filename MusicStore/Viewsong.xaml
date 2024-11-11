@@ -6,13 +6,7 @@
         xmlns:local="clr-namespace:MusicStore"
         mc:Ignorable="d"
         Title="Viewsong" Height="500" Width="800">
-    <Window.Resources>
-        <local:TimeOnlyToStringConverter x:Key="TimeOnlyToStringConverter"/>
-    </Window.Resources>
-
     <Grid>
-        
-    
         <!-- Song Information Section -->
         <StackPanel Margin="20">
             <TextBlock Text="Song Title" />
@@ -45,7 +39,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="SongId" Binding="{Binding SongId}" Width="*"/>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
-                <DataGridTextColumn Header="Duration" Binding="{Binding Duration, StringFormat='hh\\:mm\\:ss'}"  Width="*"/>
                 <DataGridTextColumn Header="File URL" Binding="{Binding FileUrl}" Width="*"/>
                 <DataGridTextColumn Header="Album" Binding="{Binding Album.Title}" Width="*"/>
             </DataGrid.Columns>
