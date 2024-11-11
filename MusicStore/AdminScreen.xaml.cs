@@ -310,7 +310,9 @@ namespace MusicStore
 
         private void ManageSong_Click(object sender, RoutedEventArgs e)
         {
-
+            Viewsong vo = new Viewsong();
+            vo.Show();
+            this.Close();
         }
     }
 }
