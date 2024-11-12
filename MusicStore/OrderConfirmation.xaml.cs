@@ -50,6 +50,14 @@ namespace MusicStore
                 CountryTextBox.Text = order.Country ?? string.Empty;
                 PhoneTextBox.Text = order.Phone ?? string.Empty;
                 EmailTextBox.Text = order.Email ?? string.Empty;
+
+                if (string.IsNullOrEmpty(FirstNameTextBox.Text) || string.IsNullOrEmpty(LastNameTextBox.Text) ||
+    string.IsNullOrEmpty(AddressTextBox.Text) || string.IsNullOrEmpty(CityTextBox.Text) ||
+    string.IsNullOrEmpty(StateTextBox.Text) || string.IsNullOrEmpty(CountryTextBox.Text) ||
+    string.IsNullOrEmpty(PhoneTextBox.Text) || string.IsNullOrEmpty(EmailTextBox.Text))
+                {
+                    MessageBox.Show("Some fields are empty.");
+                }
             }
             else
             {
