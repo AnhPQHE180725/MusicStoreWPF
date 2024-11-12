@@ -243,11 +243,14 @@ namespace MusicStore
 
             foreach (var item in CartListBox.Items)
             {
+                int newOrderDetailId = _context.OrderDetails.Any() ? _context.OrderDetails.Max(a => a.OrderDetailId) + 1 : 1;
 
                 if (item is OrderDetail orderDetail)
                 {
                     var orderItem = new OrderDetail
                     {
+                        OrderDetailId = newOrderDetailId,
+
                         OrderId = order.OrderId,
                         AlbumId = orderDetail.AlbumId,
                         Quantity = orderDetail.Quantity,
