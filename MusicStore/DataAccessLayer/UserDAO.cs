@@ -46,13 +46,16 @@ namespace MusicStore.DataAccessLayer
 
                 try
                 {
-                    context.Users.Add(user);
-                    context.SaveChanges(); // Lưu người dùng mới vào cơ sở dữ liệu
+                    // Lấy giá trị UserId lớn nhất hiện có
+                    var maxUserId = context.Users.Max(u => (int?)u.UserId) ?? 0;
+                    user.UserId = maxUserId + 1; // Tăng UserId lên 1
+
+                    context.Users.Add(user); // Thêm người dùng mới vào cơ sở dữ liệu
+                    context.SaveChanges(); // Lưu thay đổi
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    // Ghi log hoặc xử lý lỗi nếu cần
                     throw new Exception("Could not save user to database: " + ex.InnerException?.Message);
                 }
             }
