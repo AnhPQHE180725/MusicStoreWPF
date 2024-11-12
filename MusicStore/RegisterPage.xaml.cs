@@ -50,6 +50,8 @@ namespace MusicStore
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            Login lo = new Login();
+            lo.Show();
             this.Close();
         }
     }

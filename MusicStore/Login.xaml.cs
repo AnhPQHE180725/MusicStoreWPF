@@ -68,6 +68,7 @@ namespace MusicStore
             // Mở cửa sổ đăng ký
             RegisterPage registerPage = new RegisterPage();
             registerPage.Show();
+            this.Close();
             
         }
 
@@ -76,6 +77,8 @@ namespace MusicStore
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mw = new MainWindow();
+            mw.Show();
             this.Close();
 
         }

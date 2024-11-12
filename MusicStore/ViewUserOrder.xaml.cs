@@ -35,7 +35,7 @@ namespace MusicStore
         private void LoadUserOrders()
         {
             var orders = _context.Orders
-                                 .Where(o => o.UserId == _loggedInUserId)  // Filter by logged-in user's ID
+                                 .Where(o => o.UserId == _loggedInUserId)
                                  .Select(o => new
                                  {
                                      o.OrderId,
@@ -83,8 +83,12 @@ namespace MusicStore
 
         private void ListOrderDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ListOrder.SelectedItem is Order selectedOrder)  // Cast the selected item to dynamic
+            if (ListOrder.SelectedItem != null)
             {
+                // Cast to an anonymous object
+                var selectedOrder = (dynamic)ListOrder.SelectedItem;  // Cast to dynamic
+
+                // Access the OrderId property
                 int orderId = selectedOrder.OrderId;
                 LoadOrderDetails(orderId);  // Load the details of the selected order
             }
